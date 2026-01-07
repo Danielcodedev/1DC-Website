@@ -8,7 +8,7 @@
 /* Estilo general */
 body {
     font-family: Arial, Helvetica, sans-serif;
-    background-color: #0b0b0b;
+    background: radial-gradient(circle at top, #141414, #050505);
     color: #ffffff;
     min-height: 100vh;
     display: flex;
@@ -23,12 +23,40 @@ body {
     padding: 40px 20px;
 }
 
+/* Animación de entrada */
+@keyframes fadeUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.container > * {
+    animation: fadeUp 0.8s ease forwards;
+}
+
+.container > *:nth-child(1) { animation-delay: 0.1s; }
+.container > *:nth-child(2) { animation-delay: 0.2s; }
+.container > *:nth-child(3) { animation-delay: 0.3s; }
+.container > *:nth-child(4) { animation-delay: 0.4s; }
+.container > *:nth-child(5) { animation-delay: 0.5s; }
+
 /* Logo */
 .logo {
     width: 130px;
     height: auto;
     margin-bottom: 30px;
     opacity: 0.95;
+    animation: float 4s ease-in-out infinite;
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-6px); }
 }
 
 /* Título */
@@ -37,7 +65,10 @@ h1 {
     font-weight: 700;
     letter-spacing: 1px;
     margin-bottom: 20px;
+    text-shadow: 0 0 15px rgba(255,255,255,0.08);
 }
+
+
 
 /* Subtítulo */
 .subtitle {
@@ -50,9 +81,14 @@ h1 {
 /* Descripción */
 .description {
     font-size: 1rem;
-    color: #aaaaaa;
+    color: #aeaeae;
     line-height: 1.6;
     margin-bottom: 40px;
+}
+
+.description span {
+    color: #ffffff;
+    font-weight: 500;
 }
 
 /* Links */
@@ -65,17 +101,34 @@ h1 {
 }
 
 .links a {
+    position: relative;
     text-decoration: none;
     color: #ffffff;
     border: 1px solid #333333;
     padding: 10px 18px;
     border-radius: 4px;
     font-size: 0.95rem;
-    transition: all 0.3s ease;
+    overflow: hidden;
+    transition: color 0.3s ease;
+    z-index: 1;
+}
+
+.links a::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: #ffffff;
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.3s ease;
+    z-index: -1;
+}
+
+.links a:hover::after {
+    transform: scaleX(1);
 }
 
 .links a:hover {
-    background-color: #ffffff;
     color: #000000;
 }
 
@@ -83,4 +136,25 @@ h1 {
 footer {
     font-size: 0.8rem;
     color: #666666;
+}
+
+/* Selección personalizada */
+::selection {
+    background: #ffffff;
+    color: #000000;
+}
+
+/* Responsive */
+@media (max-width: 480px) {
+    h1 {
+        font-size: 2.2rem;
+    }
+
+    .subtitle {
+        font-size: 1rem;
+    }
+
+    .logo {
+        width: 110px;
+    }
 }
