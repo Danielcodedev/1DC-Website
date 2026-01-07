@@ -6,7 +6,23 @@
     <title>1DC Studios</title>
     <link rel="stylesheet" href="style.css">
 </head>
+<script>
+    window.addEventListener("load", () => {
+        const loader = document.getElementById("loader");
+
+        setTimeout(() => {
+            loader.classList.add("hide");
+        }, 1000); // 1 segundo de delay
+    });
+</script>
+
+
 <body>
+<!-- Loader -->
+<div id="loader">
+    <div class="loader-ring"></div>
+    <span>Loading</span>
+</div>
 
     <main class="container">
 
